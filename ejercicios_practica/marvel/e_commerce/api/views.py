@@ -273,15 +273,12 @@ class UpdateWishListAPIView(UpdateAPIView):
     permission_classes = [IsAuthenticated, IsAdminUser]
     authentication_classes = [TokenAuthentication]
 
-    lookup_field = "id"
+    lookup_field = "pk"
 
-    def put(self, request, *args, **kwargs):
-        _serializer = self.get_serializer(
-            instance=self.get_object(),
-            data=request.data,
-            many=False,
-            partial=True
-        )
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        _serializer = self.get_serializer(instance, data=request.data, partial=True)
+
         if _serializer.is_valid():
             _serializer.save()
             return Response(data=_serializer.data, status=status.HTTP_200_OK)
