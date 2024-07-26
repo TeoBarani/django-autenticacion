@@ -270,7 +270,7 @@ class PostWishListAPIView(CreateAPIView):
 class UpdateWishListAPIView(UpdateAPIView):
     queryset = Comic.objects.all()
     serializer_class = WishListSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminUser]
     authentication_classes = [TokenAuthentication]
 
     lookup_field = "id"
