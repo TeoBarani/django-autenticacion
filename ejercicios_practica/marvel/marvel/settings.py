@@ -43,27 +43,34 @@ BASE_APPS = [
 ]
 
 # Acá van las apps de 3ros que necesitamos agregar para que Django las encuentre.
-THIRD_APPS = ['rest_framework']
+THIRD_APPS = ['rest_framework', 'rest_framework.authtoken','drf_yasg',]
 
 # Acá van las apps que creamos nosotros.
 LOCAL_APPS = ['e_commerce']
 
 INSTALLED_APPS = BASE_APPS + THIRD_APPS + LOCAL_APPS
 
-# INSTALLED_APPS = [
+#INSTALLED_APPS = [
 #     'django.contrib.admin',
 #     'django.contrib.auth',
 #     'django.contrib.contenttypes',
 #     'django.contrib.sessions',
 #     'django.contrib.messages',
 #     'django.contrib.staticfiles',
-#     # Local apps: Acá ponemos el nombre de las carpetas de nuestras aplicaciones
-#     'e_commerce',
-#     # Third party apps: acá vamos agregando las aplicaciones de terceros, extensiones de Django.
-#     'rest_framework',
-# ]
+     # Local apps: Acá ponemos el nombre de las carpetas de nuestras aplicaciones
+ #    'e_commerce',
+     # Third party apps: acá vamos agregando las aplicaciones de terceros, extensiones de Django.
+ #    'rest_framework',
+  #   'rest_framework.authtoken',
+   #  'drf_yasg',
+ #]
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),
@@ -191,3 +198,25 @@ VERDE = "\033[;32m"
 
 # NOTE: Para manejo de sesión.
 LOGIN_URL = '/admin/login'
+
+LOGOUT_URL = '/admin/logout'
+
+SWAGGER_SETTINGS = {
+    'DEFAULT_MODEL_RENDERING': "example",
+    'SECURITY_DEFINITIONS': {
+        'basic': {
+            'description': "Basic Auth",
+            'type': 'basic',
+            'in': 'header'
+        },
+         'DRF Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+         }
+    },
+    "USE_SESSION_AUTH": True,
+    'LOGIN_URL': LOGIN_URL,
+    'LOGOUT_URL': LOGOUT_URL,
+}
+
