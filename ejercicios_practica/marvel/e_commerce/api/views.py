@@ -267,7 +267,7 @@ class PostWishListAPIView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [BasicAuthentication]
 
-class UpdateWishListAPIView(UpdateAPIView, APIView):
+class UpdateWishListAPIView(RetrieveUpdateAPIView):
     queryset = Comic.objects.all()
     serializer_class = WishListSerializer
     permission_classes = [IsAuthenticated]
