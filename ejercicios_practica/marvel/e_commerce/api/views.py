@@ -256,7 +256,7 @@ class UserLogin(APIView):
         )
     
 class GetWishListAPIView(ListCreateAPIView):
-    queryset = Comic.objects.all()
+    queryset = WishList.objects.all()
     serializer_class = WishListSerializer
     permission_classes = [AllowAny]
     authentication_classes = []
