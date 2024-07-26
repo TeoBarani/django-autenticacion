@@ -270,9 +270,8 @@ class PostWishListAPIView(CreateAPIView):
 class UpdateWishListAPIView(UpdateAPIView):
     queryset = WishList.objects.all()
     serializer_class = WishListSerializer
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
-
     lookup_field = "pk"
 
     def update(self, request, *args, **kwargs):
