@@ -262,13 +262,13 @@ class GetWishListAPIView(ListCreateAPIView):
     authentication_classes = []
 
 class PostWishListAPIView(CreateAPIView):
-    queryset = Comic.objects.all()
+    queryset = WishList.objects.all()
     serializer_class = WishListSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [BasicAuthentication]
 
 class UpdateWishListAPIView(UpdateAPIView):
-    queryset = Comic.objects.all()
+    queryset = WishList.objects.all()
     serializer_class = WishListSerializer
     permission_classes = [IsAuthenticated, IsAdminUser]
     authentication_classes = [TokenAuthentication]
@@ -290,7 +290,7 @@ class UpdateWishListAPIView(UpdateAPIView):
         )
 
 class DeleteWishListAPIView(DestroyAPIView):
-    queryset = Comic.objects.all()
+    queryset = WishList.objects.all()
     serializer_class = WishListSerializer
     permission_classes = [IsAuthenticated, IsAdminUser]
     authentication_classes = [TokenAuthentication]
