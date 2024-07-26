@@ -259,7 +259,6 @@ class GetWishListAPIView(ListAPIView):
     queryset = Comic.objects.all()
     serializer_class = WishListSerializer
     permission_classes = [AllowAny]
-    authentication_classes = []
 
 class PostWishListAPIView(CreateAPIView):
     queryset = Comic.objects.all()
@@ -270,7 +269,7 @@ class PostWishListAPIView(CreateAPIView):
 class UpdateWishListAPIView(UpdateAPIView):
     queryset = Comic.objects.all()
     serializer_class = WishListSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminUser]
     authentication_classes = [TokenAuthentication]
 
     lookup_field = 'marvel_id'
