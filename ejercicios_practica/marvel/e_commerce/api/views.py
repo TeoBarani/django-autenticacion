@@ -255,7 +255,7 @@ class UserLogin(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
     
-class GetWishListAPIView(ListAPIView):
+class GetWishListAPIView(ListCreateAPIView):
     queryset = Comic.objects.all()
     serializer_class = WishListSerializer
     permission_classes = [AllowAny]
@@ -267,7 +267,7 @@ class PostWishListAPIView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [BasicAuthentication]
 
-class UpdateWishListAPIView(RetrieveUpdateAPIView):
+class UpdateWishListAPIView(UpdateAPIView):
     queryset = Comic.objects.all()
     serializer_class = WishListSerializer
     permission_classes = [IsAuthenticated]
